@@ -7,9 +7,54 @@
 }
 
 
+.animated-form-border {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+  border-radius: 15px;
+  overflow: hidden;
+}
 
+/* Border animation — stays tight around edges */
+.animated-form-border::before,
+.animated-form-border::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    white 0%,
+    black 40%,
+    black 60%,
+    white 100%
+  );
+  animation: spinBorder 10s linear infinite;
+  z-index: 1;
+}
 
+/*
+.animated-form-border::after {
+  opacity: 0.6;
+  animation-delay: 0s;
+}
+*/
 
+/* Inner content (your original form) */
+.animated-form-content {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1px; /* thin visible animated edge */
+  margin: 2px;
+  box-sizing: border-box;
+}
+
+@keyframes spinBorder {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
         
 .fw-medium {
     font-weight: 500 !important;
