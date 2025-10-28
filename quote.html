@@ -546,7 +546,45 @@
 
     <!-- Back to Top -->
     <a href="#" class="back-to-top"><i class="ion-ios-arrow-up"></i></a>
+<!-- Floating Chat Button -->
+<div style="position: fixed; bottom: 15px; right: 20px; z-index: 9999;">
+  <button id="chatToggle"
+    style="background-color: #00bfff; color: white; border: none;
+           width: 50px; height: 50px; border-radius: 50%;
+           cursor: pointer; font-size: 22px;
+           box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+           transition: all 0.3s ease; position: relative;
+           animation: pulse 1s infinite; -webkit-animation: pulse 1.5s infinite;
+           display: flex; align-items: center; justify-content: center;">
+    <i id="chatIcon" class="fas fa-comments"></i>
 
+    <!-- Red Dot -->
+    <span id="chatDot"
+      style="position: absolute; top: 5px; right: 0px;
+             width: 10px; height: 10px; background: red;
+             border-radius: 50%; box-shadow: 0 0 6px rgba(255,0,0,0.6);
+             animation: blink 1.5s infinite;"></span>
+  </button>
+
+  <!-- Chat Options -->
+  <div id="chatOptions"
+    style="display: none; position: absolute; bottom: 75px; right: 0;
+           background: white; border-radius: 12px;
+           box-shadow: 0 4px 15px rgba(0,0,0,0.2); overflow: hidden;
+           flex-direction: column;">
+    <a href="tel:+12263857909"
+       style="display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+              color: #333; text-decoration: none; font-weight: 500;
+              border-bottom: 1px solid #eee;">
+      <i class="fas fa-phone" style="color:#00bfff;"></i> Call Us
+    </a>
+    <a href="https://wa.me/1234567890" target="_blank"
+       style="display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+              color: #333; text-decoration: none; font-weight: 500;">
+      <i class="fab fa-whatsapp" style="color:#25D366;"></i> WhatsApp
+    </a>
+  </div>
+</div>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
