@@ -98,6 +98,8 @@ $(document).ready(function () {
 
 
 
+ const sendBtn = document.getElementById("sendMessage");
+  const userMsg = document.getElementById("userMessage");
 
 const chatToggle = document.getElementById('chatToggle');
 const chatOptions = document.getElementById('chatOptions');
@@ -144,6 +146,16 @@ function startAnimation() {
   chatToggle.classList.add('animate');
 }
 
+
+  sendBtn.addEventListener("click", function() {
+    const message = encodeURIComponent(userMsg.value.trim());
+    const number = "12263857909"; // your WhatsApp number
+    if (message) {
+      window.open(`https://wa.me/${number}?text=${message}`, "_blank");
+    } else {
+      window.open(`https://wa.me/${number}`, "_blank");
+    }
+  });
 // Toggle floating chat button
 chatToggle.onclick = () => {
   if (chatOpen) {
