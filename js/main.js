@@ -148,14 +148,12 @@ function startAnimation() {
 
 
   sendBtn.addEventListener("click", function() {
+    const number = "12263857909"; // Your WhatsApp number in international format
     const message = encodeURIComponent(userMsg.value.trim());
-    const number = "12263857909"; // your WhatsApp number
-    if (message) {
-      window.open(`https://wa.me/${number}?text=${message}`, "_blank");
-    } else {
-      window.open(`https://wa.me/${number}`, "_blank");
-    }
+    const url = `https://api.whatsapp.com/send?phone=${number}&text=${message}`;
+    window.open(url, "_blank");
   });
+
 // Toggle floating chat button
 chatToggle.onclick = () => {
   if (chatOpen) {
