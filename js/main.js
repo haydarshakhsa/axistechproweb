@@ -95,44 +95,123 @@ $(document).ready(function () {
 
 
 
-// Add animations inline
- // Animations
-  const animStyle = document.createElement('style');
-  animStyle.innerHTML = `
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,191,255,0.6); }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(0,191,255,0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,191,255,0); }
+
+
+
+
+const chatToggle = document.getElementById('chatToggle');
+const chatOptions = document.getElementById('chatOptions');
+const chatIcon = document.getElementById('chatIcon');
+const chatDot = document.getElementById('chatDot');
+const waDot = document.getElementById('waDot');
+const whatsappWindow = document.getElementById('whatsapp-window');
+const openWhatsAppChat = document.getElementById('openWhatsAppChat');
+const typing = document.getElementById('typing');
+const greeting = document.getElementById('greeting');
+const chatTime = document.getElementById('chatTime');
+const statusText = document.getElementById('status');
+const backBtn = document.getElementById('backBtn');
+
+let menuVisible = false;
+let chatOpen = false;
+
+
+function stopAnimation() {
+  if (!chatToggle) return console.warn('chatToggle not found');
+  // remove class safely
+  if (chatToggle.classList.contains('animate')) {
+    chatToggle.classList.remove('animate');
+    // force reflow so browser stops animation immediately
+    // eslint-disable-next-line no-unused-expressions
+    void chatToggle.offsetWidth;
+  }
+  // also clear any inline animation style that might be present
+  chatToggle.style.animation = '';
+}
+
+function startAnimation() {
+  if (!chatToggle) return console.warn('chatToggle not found');
+
+  // Fully reset before restarting
+  chatToggle.classList.remove('animate');
+  chatToggle.style.animation = 'none';
+
+  // Force browser reflow (this resets animation timing)
+  void chatToggle.offsetWidth;
+
+  // Clear inline style and re-add the animation class
+  chatToggle.style.animation = '';
+  chatToggle.classList.add('animate');
+}
+
+// Toggle floating chat button
+chatToggle.onclick = () => {
+  if (chatOpen) {
+    // Close WhatsApp chat if open
+    whatsappWindow.style.display = "none";
+    chatIcon.className = "fas fa-comments";
+    chatToggle.style.backgroundColor = "#00bfff";
+    chatOpen = false;
+    waDot.style.display = "block";
+      chatDot.style.display="none";
+  } else {
+    // Toggle dropdown
+    if (menuVisible) {
+      chatOptions.style.display = "none";
+      chatIcon.className = "fas fa-comments";
+      chatToggle.style.backgroundColor = "#00bfff";
+          chatDot.style.display = "none";
+    } else {
+      chatOptions.style.display = "flex";
+      chatIcon.className = "fas fa-times";
+      chatToggle.style.backgroundColor = "red";
+          chatDot.style.display = "none";
+      
+          stopAnimation();
+        
     }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-  `;
-  document.head.appendChild(animStyle);
+    menuVisible = !menuVisible;
+  }
+};
 
-  const chatToggle = document.getElementById('chatToggle');
-  const chatOptions = document.getElementById('chatOptions');
-  const chatIcon = document.getElementById('chatIcon');
-  const chatDot = document.getElementById('chatDot');
+// Open WhatsApp Chat
+openWhatsAppChat.onclick = () => {
 
-  let isOpen = false;
+      stopAnimation();
+  chatOptions.style.display = "none";
+  whatsappWindow.style.display = "block";
+  chatIcon.className = "fas fa-times";
+  chatToggle.style.backgroundColor = "red";
+  chatOpen = true;
+  menuVisible = false;
+  waDot.style.display = "none";
+  chatDot.style.display = "none";
 
-  chatToggle.addEventListener('click', (e) => {
-    e.stopPropagation(); // prevent immediate close
-    isOpen = !isOpen;
-    chatOptions.style.display = isOpen ? 'flex' : 'none';
-    chatIcon.className = isOpen ? 'fas fa-times' : 'fas fa-comments';
-    chatToggle.style.backgroundColor = isOpen ? '#ff5c5c' : '#00bfff';
-    chatDot.style.display = isOpen ? 'none' : 'block';
-  });
+  // Simulate typing
+  statusText.innerHTML = "typing...";
+  const now = new Date();
+  let h = now.getHours(), m = now.getMinutes();
+  const ampm = h >= 12 ? "PM" : "AM";
+  h = h % 12 || 12;
+  chatTime.textContent = `${h}:${m < 10 ? "0" + m : m} ${ampm}`;
+  typing.style.display = "flex";
+  greeting.style.display = "none";
+  setTimeout(() => {
+    typing.style.display = "none";
+    greeting.style.display = "block";
+    statusText.innerHTML = "<span style='background:#25d366;width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;'></span>Online";
+  }, 2200);
+};
 
-  document.addEventListener('click', (e) => {
-    if (!chatToggle.contains(e.target) && isOpen) {
-      isOpen = false;
-      chatOptions.style.display = 'none';
-      chatIcon.className = 'fas fa-comments';
-      chatToggle.style.backgroundColor = '#00bfff';
-      chatDot.style.display = 'block';
-    }
-  });
+// Back button closes WhatsApp chat
+backBtn.onclick = () => {
+  whatsappWindow.style.display = "none";
+  chatIcon.className = "fas fa-comments";
+  chatToggle.style.backgroundColor = "#00bfff";
+  chatOpen = false;
+  waDot.style.display="true";
+    chatDot.style.display="block";
+    waDot.style.display="block";
+    startAnimation();
+    
+};
