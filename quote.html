@@ -588,19 +588,28 @@
 
     <!-- Back to Top -->
     <a href="#" class="back-to-top"><i class="ion-ios-arrow-up"></i></a>
+    
+    
+    
+        
+        
+
 <!-- Floating Chat Button -->
+
+        
 <div style="position: fixed; bottom: 15px; right: 20px; z-index: 9999;">
+  <!-- Main Chat Button -->
   <button id="chatToggle"
     style="background-color: #00bfff; color: white; border: none;
            width: 50px; height: 50px; border-radius: 50%;
            cursor: pointer; font-size: 22px;
            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
            transition: all 0.3s ease; position: relative;
-           animation: pulse 1s infinite; -webkit-animation: pulse 1.5s infinite;
+           animation: pulse 1.5s infinite;
            display: flex; align-items: center; justify-content: center;">
     <i id="chatIcon" class="fas fa-comments"></i>
 
-    <!-- Red Dot -->
+    <!-- 🔴 Red Dot -->
     <span id="chatDot"
       style="position: absolute; top: 5px; right: 0px;
              width: 10px; height: 10px; background: red;
@@ -614,19 +623,114 @@
            background: white; border-radius: 12px;
            box-shadow: 0 4px 15px rgba(0,0,0,0.2); overflow: hidden;
            flex-direction: column;">
+    <!-- Call Us -->
     <a href="tel:+12263857909"
        style="display: flex; align-items: center; gap: 10px; padding: 12px 16px;
               color: #333; text-decoration: none; font-weight: 500;
               border-bottom: 1px solid #eee;">
       <i class="fas fa-phone" style="color:#00bfff;"></i> Call Us
     </a>
-    <a href="https://wa.me/1234567890" target="_blank"
-       style="display: flex; align-items: center; gap: 10px; padding: 12px 16px;
-              color: #333; text-decoration: none; font-weight: 500;">
-      <i class="fab fa-whatsapp" style="color:#25D366;"></i> WhatsApp
-    </a>
+
+    <!-- WhatsApp Option -->
+   <button id="openWhatsAppChat"
+  style="display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+         color: #333; text-decoration: none; font-weight: 500;
+         background: none; border: none; width: 100%; text-align: left; cursor:pointer;
+         position: relative;"> <!-- make button relative so dot is positioned within -->
+
+  <!-- icon container -->
+  <span style="position: relative; display: inline-flex; align-items: center;">
+    <i class="fab fa-whatsapp" style="color:#25D366; font-size:20px;"></i>
+    <!-- red dot -->
+    <span id="waDot"
+      style="position: absolute; top: -4px; right: -6px;
+             width: 8px; height: 8px; background: red;
+             border-radius: 50%; box-shadow: 0 0 6px rgba(255,0,0,0.6);">
+    </span>
+  </span>
+
+  <!-- text -->
+  WhatsApp
+</button>
   </div>
 </div>
+
+<!-- WhatsApp Chat Window -->
+<div id="whatsapp-window" style="
+  display: none; position: fixed; bottom: 90px; right: 20px; width: 320px;
+  border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  overflow: hidden; font-family: 'Segoe UI', sans-serif; z-index: 1000;">
+  
+  <!-- Header -->
+  <div id="wa-header"
+       style="background:#075E54;color:white;padding:10px;display:flex;align-items:center;">
+    <i id="backBtn" class="fas fa-arrow-left" 
+       style="font-size:18px;margin-right:10px;cursor:pointer;"></i>
+    <img src="img/haydar.jpg"
+         style="width:40px;height:40px;border-radius:50%;margin-right:10px;">
+    <div style="flex-grow:1;">
+      <div style="font-weight:bold;">Haydar From Support Team</div>
+      <div id="status" style="font-size:12px;color:#bdbdbd;">
+        <span style='background:#25d366;width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;'></span>
+        Online
+      </div>
+    </div>
+
+    <!-- 📞 Call, 🎥 Video, ⋮ Menu -->
+    <div style="display:flex;gap:10px;align-items:center;">
+      <a href="tel:+12263857909" style="color:white;text-decoration:none;font-size:18px;">
+        <i class="fas fa-phone"></i>
+      </a>
+      <a href="#" style="color:white;text-decoration:none;font-size:18px;">
+        <i class="fas fa-video"></i>
+      </a>
+      <i class="fas fa-ellipsis-v" style="font-size:18px;cursor:pointer;" title="Menu"></i>
+    </div>
+  </div>
+
+  <!-- Chat Area -->
+  <div id="wa-chat-area" style="padding:10px;min-height:120px;
+       ">
+    <div id="chatTime" style="text-align:center;font-size:11px;color:gray;margin-bottom:10px;"></div>
+
+    <!-- Typing dots -->
+    <div id="typing" style="display:flex;align-items:center;margin-left:10px;margin-bottom:5px;">
+      <div style="background:#dcf8c6;padding:8px 12px;border-radius:10px 10px 10px 0;display:inline-flex;gap:4px;">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <!-- Greeting Message -->
+    <div id="greeting" style="display:none;">
+      <div style="background:#dcf8c6;padding:8px 12px;border-radius:10px 10px 10px 0;display:inline-block;max-width:80%;">
+        <div id="greetingText" style="color:#000;">Hi there 👋<br>How can I help you?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="display:flex;border-top:1px solid #ddd;background:white;">
+    <input id="userMessage" type="text" placeholder="Type a message"
+           style="flex:1;padding:8px;border:none;outline:none;font-size:14px;">
+    <button href="https://wa.me/12263857909" 
+   target="_blank"  id="sendMessage" style="background:#25D366;color:white;border:none;padding:0 15px;cursor:pointer;">
+    
+  <i class="bi bi-send"></i>
+
+    </button>
+  </div>
+</div>   
+        
+       
+    
+    
+    
+    
+    
+    
+    
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
