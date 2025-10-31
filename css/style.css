@@ -789,3 +789,24 @@ input#userMessage {
     .faq{
         min-height: 70vh;
     }
+}
+
+  @keyframes rotateIcon {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .rotate-icon {
+    animation: rotateIcon 6s linear infinite;
+  }
+
+  @media (max-width: 768px) {
+    .mount-section { max-width: 100% !important; }
+  }
+
+.dropdown-item:active,
+.dropdown-item:focus,
+.dropdown-item:focus-visible {
+  background-color: transparent !important;
+  color: inherit !important;
+}
