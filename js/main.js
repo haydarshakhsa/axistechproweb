@@ -225,3 +225,58 @@ backBtn.onclick = () => {
     startAnimation();
     
 };
+
+
+
+(function(){
+  const overlay = document.getElementById('imgOverlay');
+  const handle = document.getElementById('sliderHandle');
+  const container = document.getElementById('imgCompare');
+  const btnLeft = document.getElementById('btnLeft');
+  const btnRight = document.getElementById('btnRight');
+  let position = 50;
+
+  function setPosition(pct){
+    pct = Math.max(0, Math.min(100, pct));
+    position = pct;
+    overlay.style.width = pct + '%';
+    handle.style.left = pct + '%';
+  }
+
+  setPosition(50);
+
+  // Dragging
+  let dragging = false;
+  function start(e){ dragging = true; move(e); }
+  function end(){ dragging = false; }
+  function move(e){
+    if(!dragging) return;
+    const rect = container.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const pct = ((clientX - rect.left) / rect.width) * 100;
+    setPosition(pct);
+  }
+
+  container.addEventListener('pointerdown', start);
+  window.addEventListener('pointerup', end);
+  window.addEventListener('pointermove', move);
+  container.addEventListener('touchstart', start, {passive:true});
+  container.addEventListener('touchend', end, {passive:true});
+  container.addEventListener('touchmove', move, {passive:true});
+
+  // Arrow buttons
+  btnLeft.addEventListener('click', ()=> setPosition(position - 10));
+  btnRight.addEventListener('click', ()=> setPosition(position + 10));
+
+  // Scroll-based movement
+  window.addEventListener('scroll', () => {
+    const rect = container.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const visible = Math.max(0, Math.min(windowHeight, windowHeight - rect.top));
+    const scrollPct = (visible / windowHeight) * 100;
+    if (rect.top < windowHeight && rect.bottom > 0) {
+      // Animate slider from left to right as section scrolls into view
+      setPosition(scrollPct);
+    }
+  });
+})();
