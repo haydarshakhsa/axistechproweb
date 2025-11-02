@@ -836,7 +836,7 @@ input#userMessage {
   top: 0;
   width: 50%;
   height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.75);
   transition: width 0.25s ease;
   pointer-events: none;
   will-change: width;
