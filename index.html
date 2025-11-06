@@ -1039,7 +1039,7 @@
                                     <h2 style="text-align: center; font-weight: bold; color: #00bfff">
                                         We’re only a click away.
                                     </h2>
-                                    <form
+                                    <form id="myForm"  method="POST"
                                         style="
                                             width: 90%;
                                             margin: 0 auto;
@@ -1048,11 +1048,13 @@
                                             background: #fff;
                                             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
                                         ">
+                                          <input type="hidden" name="access_key" value="854f337c-811c-4340-b0a2-94aa527b9545">
                                         <div class="row g-3">
                                             <!-- Name -->
                                             <div class="col-md-6">
                                                 <div class="form-floating">
                                                     <input
+                                                           name="name" 
                                                         type="text"
                                                         class="form-control"
                                                         id="name"
@@ -1068,6 +1070,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-floating">
                                                     <input
+                                                           name="email" 
                                                         type="email"
                                                         class="form-control"
                                                         id="email"
@@ -1083,6 +1086,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-floating">
                                                     <input
+                                                           name="phone" 
                                                         type="tel"
                                                         class="form-control"
                                                         id="phone"
@@ -1103,6 +1107,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-floating">
                                                     <input
+                                                           name="subject" 
                                                         type="text"
                                                         class="form-control"
                                                         id="subject"
@@ -1118,6 +1123,7 @@
                                             <div class="col-12">
                                                 <div class="form-floating">
                                                     <textarea
+                                                              name="text" 
                                                         class="form-control"
                                                         placeholder="Leave a message here"
                                                         id="message"
@@ -1171,6 +1177,38 @@
                 <!-- Contact End -->
             </div>
         </section>
+        
+        
+<!-- Popup message -->
+<div id="popupMessage" style="
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  color: black;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  font-weight: bold;
+  z-index: 1000;
+  text-align: center;
+">
+  <p id="popupText"></p>
+</div>
+
+<!-- Overlay for popup background -->
+<div id="popupOverlay" style="
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+"></div>
 
         <!-- Footer Start -->
         <!-- Footer Start -->

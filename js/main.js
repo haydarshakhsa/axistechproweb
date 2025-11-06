@@ -7,6 +7,12 @@
     // Initiate the wowjs
     new WOW().init();
 
+    
+    
+    
+    
+    
+    
 
     // Sticky Navbar
     $(window).scroll(function () {
@@ -16,6 +22,7 @@
             $('.sticky-top').removeClass('shadow-sm').css('top', '-100px');
         }
     });
+    
     
     
     // Back to top button
@@ -91,6 +98,60 @@ $(document).ready(function () {
   });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("myForm");
+  const popup = document.getElementById("popupMessage");
+
+  // Scroll back and show success popup after reload
+  if (localStorage.getItem("formSent") === "true") {
+    localStorage.removeItem("formSent");
+    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+    showPopup("Thank you for taking the time to complete this form. Someone will be in contact with you shortly.", "#4BB543");
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // stop normal form submission
+
+    showPopup("Processing...", "#007bff");
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        showPopup("Thank you for taking the time to complete this form. Someone will be in contact with you shortly.", "#4BB543");
+        form.reset();
+        localStorage.setItem("formSent", "true");
+
+        // Delay refresh so the user sees the popup
+        setTimeout(() => location.reload(), 4000);
+      } else {
+        showPopup("Error: " + (data.message || "Try again."), "#ff4d4d");
+      }
+    } catch (err) {
+      console.error("Web3Form Error:", err);
+      showPopup("Network error. Please try again.", "#ff4d4d");
+    }
+  });
+
+  function showPopup(message, color) {
+    popup.textContent = message;
+    popup.style.background = color;
+    popup.style.display = "block";
+    popup.style.opacity = "1";
+    setTimeout(() => {
+      popup.style.opacity = "0";
+      setTimeout(() => (popup.style.display = "none"), 500);
+    }, 5000);
+  }
+});
 
 
 
@@ -280,3 +341,22 @@ backBtn.onclick = () => {
     }
   });
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
