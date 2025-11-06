@@ -258,9 +258,9 @@
         Tell Us About Your Project and Get Free Consultation
       </h2>
       <h3 style="font-size: 1.2rem; color: #3399ff; font-weight: 400; opacity: 0.9">(Rosie Tech Solutions Quote)</h3>
-    </section>
+          
 <!-- Quote Form Start -->
-<div class="animated-form-border">
+<div class="animated-form-border"  id="quote-form-section">
   <div class="animated-form-content">
     <div
       style="
@@ -286,8 +286,8 @@
         ">
       
           
-          <form action="https://api.web3forms.com/submit" method="POST"  style="width: 100%; box-sizing: border-box">
-  <input type="hidden" name="access_key" value="ba5fe634-daef-41f6-8a95-94df19aeb224">
+          <form id="quoteForm"  method="POST"  style="width: 100%; box-sizing: border-box">
+      <input type="hidden" name="access_key" value="854f337c-811c-4340-b0a2-94aa527b9545">
           
           <input
             type="text"
@@ -305,6 +305,8 @@
               padding: 15px;
               font-size: 1.5rem;
               box-sizing: border-box;
+                       background-color: white;   /* ✅ add this */
+
             "
             onfocus="this.style.borderColor='#00bfff'; this.style.boxShadow='0 0 0 0.25rem rgba(0,191,255,0.25)';"
             onblur="this.style.borderColor=''; this.style.boxShadow='';" />
@@ -328,6 +330,8 @@
               padding: 15px;
               font-size: 1.5rem;
               box-sizing: border-box;
+                       background-color: white;   /* ✅ add this */
+
             "
             onfocus="this.style.borderColor='#00bfff'; this.style.boxShadow='0 0 0 0.25rem rgba(0,191,255,0.25)';"
             onblur="this.style.borderColor=''; this.style.boxShadow='';" />
@@ -348,6 +352,8 @@
               padding: 15px;
               font-size: 1.5rem;
               box-sizing: border-box;
+                       background-color: white;   /* ✅ add this */
+
             "
             onfocus="this.style.borderColor='#00bfff';this.style.boxShadow='0 0 0 0.25rem rgba(0,191,255,0.25)';"
             onblur="this.style.borderColor=''; this.style.boxShadow='';" />
@@ -369,6 +375,8 @@
               padding: 15px;
               font-size: 1.5rem;
               box-sizing: border-box;
+                       background-color: white;   /* ✅ add this */
+
             "
             onfocus="this.style.borderColor='#00bfff'; this.style.boxShadow='0 0 0 0.25rem rgba(0,191,255,0.25)';"
             onblur="this.style.borderColor=''; this.style.boxShadow='';" />
@@ -390,6 +398,8 @@
               padding: 15px;
               font-size: 1.5rem;
               box-sizing: border-box;
+                       background-color: white;   /* ✅ add this */
+
             "
             onfocus="this.style.borderColor='#00bfff'; this.style.boxShadow='0 0 0 0.25rem rgba(0,191,255,0.25)';"
             onblur="this.style.borderColor=''; this.style.boxShadow='';" />
@@ -411,6 +421,8 @@
               font-size: 1.5rem;
               box-sizing: border-box;
               resize: vertical;
+                       background-color: white;   /* ✅ add this */
+
             "
             onfocus="this.style.borderColor='#00bfff'; this.style.boxShadow='0 0 0 0.25rem rgba(0,191,255,0.25)';"
             onblur="this.style.borderColor=''; this.style.boxShadow='';"></textarea>
@@ -425,7 +437,7 @@
               outline: none;
               border: none;
               border-radius: 5rem;
-              background: white;
+              background: #4780bc;
               border-style: groove;
               border-color: #002e5f;
               font-size: 1.5rem;
@@ -436,12 +448,29 @@
               transition: all 0.3s ease;
             "
             onmouseover="this.style.background='#002e5f';this.style.color='white';this.style.letterSpacing='.1rem';this.style.opacity='0.9';"
-            onmouseout="this.style.background='white';this.style.color='black';this.style.letterSpacing='0';this.style.opacity='1';" />
+            onmouseout="this.style.background= '#4780bc';this.style.color='white';this.style.letterSpacing='0';this.style.opacity='1';" />
+       <!-- Message area below the submit button -->
+          <div id="formMessage" style="
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-top: 10px;
+            color: #007bff;
+            min-height: 20px;">
+            </div>
+        
         </form>
       </div>
     </div>
   </div>
 </div>
+
+
+      
+      
+    </section>
+    
+    
 
     <!-- Quote Form End -->
 

@@ -158,6 +158,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("quoteForm");
+  const messageDiv = document.getElementById("formMessage");
+
+  // If form was just submitted before reload
+  if (localStorage.getItem("formSent") === "true") {
+    localStorage.removeItem("formSent");
+    document.getElementById("quote-form-section").scrollIntoView({ behavior: "smooth" });
+    showMessage("✅ Your quote is requested — we'll get back to you shortly.", "#4BB543");
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    showMessage("Processing your request...", "#007bff");
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        showMessage("✅ Your quote is requested — we'll get back to you shortly.", "#4BB543");
+        form.reset();
+        localStorage.setItem("formSent", "true");
+        setTimeout(() => location.reload(), 7000);
+      } else {
+        showMessage("⚠️ Error sending quote. Please try again.", "#ff4d4d");
+      }
+    } catch (err) {
+      console.error(err);
+      showMessage("⚠️ Network error. Please try again later.", "#ff4d4d");
+    }
+  });
+
+  function showMessage(msg, color) {
+    messageDiv.textContent = msg;
+    messageDiv.style.color = color;
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  const sendBtn = document.getElementById("sendMessage");
   const userMsg = document.getElementById("userMessage");
