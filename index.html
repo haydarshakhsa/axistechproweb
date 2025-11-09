@@ -1371,6 +1371,13 @@
         
         
         
+  
+        
+        
+        
+        
+        
+        
 <!-- Floating Chat Button -->
 
         
@@ -1515,5 +1522,53 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        
+                
+<!-- 🌐 Floating Social Media Button -->
+<div id="socialContainer" style="position: fixed; bottom: 15px; left: 10px; z-index: 9999;">
+  <!-- Main Social Button -->
+  <button id="socialToggle"
+    style="background-color: #00bfff; color: white; border: none;
+           width: 50px; height: 50px; border-radius: 50%;
+           cursor: pointer; font-size: 22px;
+           box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+           transition: all 0.3s ease; position: relative;
+           animation: pulse 1.5s infinite;
+           display: flex; align-items: center; justify-content: center;">
+    <i id="socialIcon" class="fas fa-globe"></i>
+  </button>
+
+  <!-- Social Media Options -->
+  <div id="socialOptions"
+    style="display: none; position: absolute; bottom: 75px; left: 0;
+           background: white; border-radius: 12px;
+           box-shadow: 0 4px 15px rgba(0,0,0,0.2); overflow: hidden;
+           flex-direction: column;">
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/rosietechsolutions" target="_blank"
+       style="display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+              color: #333; text-decoration: none; font-weight: 500;
+              border-bottom: 1px solid #eee;">
+      <i class="fab fa-facebook" style="color:#1877F2;"></i> Facebook
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/rosietechsolutions" target="_blank"
+       style="display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+              color: #333; text-decoration: none; font-weight: 500;
+              border-bottom: 1px solid #eee;">
+      <i class="fab fa-instagram" style="color:#E4405F;"></i> Instagram
+    </a>
+
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@rosietechsolutions.ca" target="_blank"
+       style="display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+              color: #333; text-decoration: none; font-weight: 500;">
+      <i class="fab fa-tiktok" style="color:#000000;"></i> TikTok
+    </a>
+  </div>
+</div>
+        
+      
     </body>
 </html>

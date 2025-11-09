@@ -9,7 +9,11 @@
 
 
 
-
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(66,103,178, 0.4); }
+  70% { transform: scale(1.08); box-shadow: 0 0 20px rgba(66,103,178, 0.2); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(66,103,178, 0.4); }
+}
 /* Default (light mode) styles */
 
 

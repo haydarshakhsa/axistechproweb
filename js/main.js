@@ -210,6 +210,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+document.addEventListener("DOMContentLoaded", function() {
+  const toggleBtn = document.getElementById("socialToggle");
+  const options = document.getElementById("socialOptions");
+
+  toggleBtn.addEventListener("click", function() {
+    if (options.style.display === "flex") {
+      options.style.display = "none";
+    } else {
+      options.style.display = "flex";
+      options.style.flexDirection = "column";
+    }
+  });
+});
+
+
+
+
 
 
 
@@ -403,6 +420,10 @@ backBtn.onclick = () => {
     }
   });
 })();
+
+
+
+
 
 
 
