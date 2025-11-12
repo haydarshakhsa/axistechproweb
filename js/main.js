@@ -59,9 +59,21 @@ autoplayTimeout: 6000,
             '<i class="bi bi-chevron-left"></i>',
             '<i class="bi bi-chevron-right"></i>'
         ]
+      
+  
+    
     });
 
 
+// SEO fix for headings
+$('.header-carousel').on('initialized.owl.carousel', function() {
+    $('.header-carousel .cloned h1, .header-carousel .cloned h2').remove();
+    $('.header-carousel .cloned').attr('aria-hidden', 'true');
+});
+$('.header-carousel').on('changed.owl.carousel', function(event) {
+    $('.header-carousel .owl-item').attr('aria-hidden', 'true');
+    $('.header-carousel .owl-item.active').attr('aria-hidden', 'false');
+});
     // Testimonials carousel
     $('.testimonial-carousel').owlCarousel({
         autoplay: true,
